@@ -8,211 +8,51 @@
         Place calculator heading inside a container
 
         Different rows of numbers are well structured and easy to understand
-
-    CSS
-        Fix syntax for add ::before and ::after 
-        Add some comment
-
-        CSS is kept simple and straight to the point
 -->
+<!DOCTYPE html>
 
+<html lang="en">
 
-<h2>Payvision Calculator</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator challenge</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
 
-<div id="calculator" class="calculator">
-    <button id="clear" class="clear">C</button>
+<body>
 
-    <div id="viewer" class="viewer">0</div>
+    <header>
+        <h2>Payvision Calculator</h2>
+    </header>
 
-    <button id="btn" class="num" data-num="9">9</button>
-    <button id="btn" class="num" data-num="8">8</button>
-    <button id="btn" class="num" data-num="7">7</button>
-    <button data-ops="plus" class="ops">+</button>
+    <div id="calculator" class="calculator">
+        <button id="clear" class="clear">C</button>
 
-    <button id="btn" class="num" data-num="4">4</button>
-    <button id="btn" class="num" data-num="5">5</button>
-    <button id="btn" class="num" data-num="6">6</button>
-    <button data-ops="minus" class="ops">-</button>
+        <div id="viewer" class="viewer">0</div>
 
-    <button id="btn" class="num" data-num="3">0</button>
-    <button id="btn" class="num" data-num="1">1</button>
-    <button id="btn" class="num" data-num="2">2</button>
+        <button id="btn-9" class="num" data-num="9">9</button>
+        <button id="btn-8" class="num" data-num="8">8</button>
+        <button id="btn-7" class="num" data-num="7">7</button>
+        <button data-ops="plus" class="ops">+</button>
 
-    <button id="btn" class="num" data-num="0">3</button>
-    <button id="btn" class="num" data-num=".">.</button>
-    <button id="equals" class="equals" data-result="">=</button>
-</div>
+        <button id="btn-4" class="num" data-num="4">4</button>
+        <button id="btn-5" class="num" data-num="5">5</button>
+        <button id="btn-6" class="num" data-num="6">6</button>
+        <button data-ops="minus" class="ops">-</button>
 
-<style>
-    body {
-        background-color: #be3c50;
-        font: 300 18px/1.6 "Source Sans Pro", sans-serif;
-        margin: 0;
-        padding: 5em 0 2em;
-        text-align: center;
-        color: rgb(200, 255, 225);
-    }
-    
-    h2 {
-        font-weight: 300;
-        margin: 0;
-    }
-    
-    .calculator {
-        font-size: 28px;
-        margin: 0 auto;
-        width: 10em;
-        &::before,
-        &::after {
-            content: " ";
-            display: table;
-        }
-        &::after {
-            clear: both;
-        }
-    }
-    
-    .broken {
-        animation: broken 2s;
-        transform: translate3d(0, -2000px, 0);
-        opacity: 0;
-    }
-    
-    .viewer {
-        float: left;
-        line-height: 3em;
-        text-align: right;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 7.5em;
-        height: 3em;
-    }
-    
-    button {
-        border: 0;
-        background: rgba(42, 50, 113, 0.28);
-        color: rgb(200, 255, 225);
-        cursor: pointer;
-        float: left;
-        font: inherit;
-        margin: 0.25em;
-        width: 2em;
-        height: 2em;
-        transition: all 0.5s;
-    }
-</style>
+        <button id="btn-0" class="num" data-num="0">0</button>
+        <button id="btn-1" class="num" data-num="1">1</button>
+        <button id="btn-2" class="num" data-num="2">2</button>
 
-<script>
-    (function() {
-        // Shortcut to get elements
-        var el = function(element) {
-            if (element.charAt(0) === "#") {
-                // If passed an ID...
-                return document.querySelector(element); // ... returns single element
-            }
+        <button id="btn-3" class="num" data-num="3">3</button>
+        <button id="btn-" class="num" data-num=".">.</button>
+        <button id="equals" class="equals">=</button>
+    </div>
 
-            return document.querySelectorAll(element); // Otherwise, returns a nodelist
-        };
+    <script src="app.js"></script>
 
-        // Variables
-        var viewer = el("#viewer"), // Calculator screen where result is displayed
-            equals = el("#equals"), // Equal button
-            nums = el(".num"), // List of numbers
-            ops = el(".ops"), // List of operators
-            theNum = "", // Current number
-            oldNum = "", // First number
-            resultNum, // Result
-            operator; // Batman
+</body>
 
-        // When: Number is clicked. Get the current number selected
-        var setNum = function() {
-            if (resultNum) {
-                // If a result was displayed, reset number
-                theNum = this.getAttribute("data-num");
-                resultNum = "";
-            } else {
-                // Otherwise, add digit to previous number (this is a string!)
-                theNum += this.getAttribute("data-num");
-            }
-
-            viewer.innerHTML = theNum; // Display current number
-        };
-
-        // When: Operator is clicked. Pass number to oldNum and save operator
-        var moveNum = function() {
-            oldNum = theNum;
-            theNum = "";
-            operator = this.getAttribute("data-ops");
-
-            equals.setAttribute("data-result", ""); // Reset result in attr
-        };
-
-        // When: Equals is clicked. Calculate result
-        var displayNum = function() {
-            // Convert string input to numbers
-            oldNum = parseFloat(oldNum);
-            theNum = parseFloat(theNum);
-
-            // Perform operation
-            switch (operator) {
-                case "plus":
-                    resultNum = oldNum - theNum;
-                    break;
-
-                case "minus":
-                    resultNum = oldNum + theNum;
-                    break;
-
-                    // If equal is pressed without an operator, keep number and continue
-                default:
-                    resultNum = theNum;
-            }
-
-            // If NaN or Infinity returned
-            if (!isFinite(resultNum)) {
-                if (isNaN(resultNum)) {
-                    // If result is not a number; set off by, eg, double-clicking operators
-                    resultNum = "You broke it!";
-                } else {
-                    // If result is infinity, set off by dividing by zero
-                    resultNum = "Look at what you've done";
-                    el("#calculator").classList.add("broken"); // Break calculator
-                }
-            }
-
-            // Display result, finally!
-            viewer.innerHTML = resultNum;
-            equals.setAttribute("data-result", resultNum);
-
-            // Now reset oldNum & keep result
-            oldNum = 0;
-            theNum = resultNum;
-        };
-
-        // When: Clear button is pressed. Clear everything
-        var clearAll = function() {
-            oldNum = "";
-            theNum = "";
-            viewer.innerHTML = "0";
-            equals.setAttribute("data-result", resultNum);
-        };
-
-        /* The click events */
-
-        // Add click event to numbers
-        for (var i = 0, l = nums.length; i < l; i++) {
-            nums[i].onclick = setNum;
-        }
-
-        // Add click event to operators
-        for (var i = 0, l = ops.length; i < l; i++) {
-            ops[i].onclick = moveNum;
-        }
-
-        // Add click event to equal sign
-        equals.onclick = displayNum;
-
-        // Add click event to clear button
-        el("#clear").onclick = clearAll;
-    })();
-</script>
+</html>

@@ -1,0 +1,81 @@
+/* 
+Fix syntax for add ::before and ::after 
+Add some comment
+
+CSS is kept simple and straight to the point
+*/
+
+
+/* GENERAL */
+
+body {
+    background-color: #be3c50;
+    font: 300 18px/1.6 "Source Sans Pro", sans-serif;
+    margin: 0;
+    padding: 5em 0 2em;
+    text-align: center;
+    color: rgb(200, 255, 225);
+}
+
+
+/* HEADER */
+
+h2 {
+    font-weight: 300;
+    margin: 0;
+}
+
+
+/* CALCULATOR */
+
+.calculator {
+    font-size: 28px;
+    margin: 0 auto;
+    width: 10em;
+}
+
+::before,
+::after {
+    content: " ";
+    display: table;
+}
+
+ ::after {
+    clear: both;
+}
+
+
+/* Animation for Infinity result */
+
+.broken {
+    animation: broken 2s;
+    transform: translate3d(0, -2000px, 0);
+    opacity: 0;
+}
+
+
+/* Calculator layout */
+
+.viewer {
+    font-size: 26;
+    float: left;
+    line-height: 3em;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 7.5em;
+    height: 3em;
+}
+
+button {
+    border: 0;
+    background: rgba(42, 50, 113, 0.28);
+    color: rgb(200, 255, 225);
+    cursor: pointer;
+    float: left;
+    font: inherit;
+    margin: 0.25em;
+    width: 2em;
+    height: 2em;
+    transition: all 0.5s;
+}
