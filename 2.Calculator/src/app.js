@@ -1,15 +1,3 @@
-// Fix plus and minus operators
-// Decide a maximum number.length to display on calculator
-// Allow only one decimal point in the calculator viewer
-// Add commas for thousands separator
-// stop adding commas for thousands separator after decimal point
-// Limit to 5 decimal digits as result
-
-// IIFE is great for keep code private
-// the use of function expression add more structure to the code
-// Code is well commented and easy to understand
-
-
 (function() {
 
     // Shortcut to get elements

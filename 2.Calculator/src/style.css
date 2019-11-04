@@ -1,34 +1,35 @@
-/* 
-Fix syntax for add ::before and ::after 
-Add some comment
-
-CSS is kept simple and straight to the point
-*/
-
-
 /* GENERAL */
 
 body {
-    background-color: #be3c50;
+    background-image: linear-gradient(rgb(0, 255, 255, 0.3), rgb(60, 223, 133, 0.5));
+    /*rgb(60, 223, 133);*/
     font: 300 18px/1.6 "Source Sans Pro", sans-serif;
     margin: 0;
     padding: 5em 0 2em;
     text-align: center;
-    color: rgb(200, 255, 225);
 }
 
 
 /* HEADER */
 
 h2 {
+    font-family: 'Courgette', cursive;
+    text-decoration: underline;
+    font-size: 40px;
     font-weight: 300;
+    color: rgb(0, 0, 0);
     margin: 0;
+    margin-bottom: 60px;
 }
 
 
 /* CALCULATOR */
 
 .calculator {
+    background-color: rgb(134, 132, 132);
+    /* rgb(216, 214, 214)*/
+    border-radius: 15px;
+    padding: 5px;
     font-size: 28px;
     margin: 0 auto;
     width: 10em;
@@ -68,23 +69,49 @@ h2 {
 .viewer {
     font-size: 26;
     float: left;
-    line-height: 3em;
-    text-align: right;
+    background-color: rgb(255, 255, 255);
+    color: rgb(30, 134, 77);
+    text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 7.5em;
-    height: 3em;
+    margin: 10px 0;
 }
 
 button {
     border: 0;
-    background: rgba(42, 50, 113, 0.28);
-    color: rgb(200, 255, 225);
+    border-radius: 15px 40px;
+    background: rgb(255, 255, 255);
+    color: rgb(30, 134, 77);
     cursor: pointer;
     float: left;
     font: inherit;
     margin: 0.25em;
     width: 2em;
     height: 2em;
-    transition: all 0.5s;
+}
+
+button.ops {
+    background-color: rgb(0, 255, 255, 0.7);
+    color: black;
+}
+
+button.equals {
+    background-color: rgb(51, 171, 249, 0.7);
+    color: black;
+}
+
+button.clear {
+    background-color: rgb(247, 92, 92, 0.6);
+    color: black;
+    float: right;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    background-color: rgb(60, 223, 133, 0.3);
+    color: rgb(255, 255, 255);
 }
