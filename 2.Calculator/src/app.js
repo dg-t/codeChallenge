@@ -3,6 +3,7 @@
 // Allow only one decimal point in the calculator viewer
 // Add commas for thousands separator
 // stop adding commas for thousands separator after decimal point
+// Limit to 5 decimal digits as result
 
 // IIFE is great for keep code private
 // the use of function expression add more structure to the code
@@ -90,10 +91,36 @@
             case "minus":
                 resultNum = oldNum - theNum; // Fix bug by changing operator
                 break;
+            case "multiply":
+                resultNum = oldNum * theNum;
+                break;
+            case "divide":
+                resultNum = oldNum / theNum;
+                break;
 
                 // If equal is pressed without an operator, keep number and continue
             default:
                 resultNum = theNum;
+        }
+
+
+
+
+        // Allow up to 5 decimals when displaying result
+        if (resultNum.toString().includes('.')) {
+            viewer.innerHTML = parseFloat(formatNumber(resultNum)).toFixed(5);
+
+            // Display error if result is too long
+        } else if (resultNum.toString().length > 9) {
+            viewer.innerHTML = "Expression is too long!".fontsize(3);
+        } else {
+            // Display result, finally!
+            viewer.innerHTML = formatNumber(resultNum);
+            equals.setAttribute("data-result", resultNum);
+
+            // Now reset oldNum & keep result
+            oldNum = 0;
+            theNum = resultNum;
         }
 
         // If NaN or Infinity returned
@@ -106,19 +133,7 @@
                 resultNum = "Look at what you've done".fontsize(3);
                 el("#calculator").classList.add("broken"); // Break calculator
             }
-        }
-
-        // Display error if result is too long
-        if (resultNum.toString().length > 9) {
-            viewer.innerHTML = "Expression is too long!".fontsize(3);
-        } else {
-            // Display result, finally!
-            viewer.innerHTML = formatNumber(resultNum);
-            equals.setAttribute("data-result", resultNum);
-
-            // Now reset oldNum & keep result
-            oldNum = 0;
-            theNum = resultNum;
+            viewer.innerHTML = resultNum;
         }
     };
 

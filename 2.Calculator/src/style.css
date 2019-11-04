@@ -48,9 +48,18 @@ h2 {
 /* Animation for Infinity result */
 
 .broken {
-    animation: broken 2s;
-    transform: translate3d(0, -2000px, 0);
-    opacity: 0;
+    transition-duration: 3s;
+    transform: rotate(360deg);
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 
