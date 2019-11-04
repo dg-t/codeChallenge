@@ -119,7 +119,7 @@
             equals.setAttribute("data-result", resultNum);
 
             // Now reset oldNum & keep result
-            oldNum = 0;
+            oldNum = ""; // set to empty string to allow moltiple divisions
             theNum = resultNum;
         }
 
