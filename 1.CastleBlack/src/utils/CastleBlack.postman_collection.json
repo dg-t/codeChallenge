@@ -7,40 +7,6 @@
     "item": [{
             "name": "POST",
             "item": [{
-                    "name": "add player",
-                    "request": {
-                        "method": "POST",
-                        "header": [{
-                            "key": "Content-Type",
-                            "name": "Content-Type",
-                            "value": "application/json",
-                            "type": "text"
-                        }],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{ \n\t\"name\": \"Tyron Lannister\",\n\t\"age\": 42,\n\t\"bag\":[4]\n}",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            }
-                        },
-                        "url": {
-                            "raw": "http://localhost:8080/api/players",
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "8080",
-                            "path": [
-                                "api",
-                                "players"
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
                     "name": "add player success",
                     "request": {
                         "method": "POST",
@@ -344,6 +310,54 @@
                             ]
                         },
                         "description": "A stone has been added to the objects array"
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "DELETE",
+            "item": [{
+                    "name": "delete object validationError",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/objects/10",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "objects",
+                                "10"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete object success",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/objects/2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "objects",
+                                "2"
+                            ]
+                        },
+                        "description": "Delete object with id of 2"
                     },
                     "response": []
                 }
