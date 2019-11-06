@@ -10,6 +10,8 @@
   "author": "Payvision",
   "license": "ISC",
   "dependencies": {
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/joi": "^16.1.7",
     "consola": "^2.10.1",
     "express": "^4.17.1"
   },
