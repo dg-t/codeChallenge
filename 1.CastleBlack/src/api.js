@@ -74,4 +74,60 @@ api.post("/players", function(req, res) {
     res.json(player);
 });
 
+// ENDPOINT: OBJECTS
+// LIST ALL OBJECTS
+api.get("/objects", function(req, res) {
+
+    // Get all objects
+    var objectInfo = [];
+    for (o = 0; o < objects.length; o++) {
+        if (objects[o]) {
+            objectInfo.push(objects[o]); // objects[o].name + " " + objects[o].value
+        }
+    }
+    // Display result
+    res.json(objectInfo);
+});
+
+// GET SPECIFIC OBJECT BY ID
+api.get("/objects/:id", function(req, res) {
+
+    // Find the object with the specific ID
+    const object = objects.find(o => o.id === parseInt(req.params.id));
+
+    // Validation error 400 bad request
+    if (!object) {
+        res.status(404).json("The object with the given ID was not found!");
+    } else {
+        // Display result
+        res.json(object);
+    }
+});
+
+// ADD AN OBJECT
+api.post("/objects", function(req, res) {
+
+    // Validation error 400 bad request
+    if (!req.body.name || req.body.name.length < 2) {
+        res.status(400).json("Object name is required and should be minimum 2 characters");
+        return;
+    } else if (!req.body.value || (req.body.value < -20 || req.body.value > 20)) {
+        res.status(400).json("Object value is required and should be between -20 and +20");
+        return;
+    }
+
+    // Creat new object
+    const object = {
+        id: objects.length + 1,
+        name: req.body.name,
+        value: req.body.value
+    };
+
+    // Push new object to objects array  
+    // display result in postman collection attached in the utils folder
+    objects.push(object);
+    res.json(object);
+});
+
+
 module.exports = api
