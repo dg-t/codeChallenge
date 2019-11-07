@@ -123,7 +123,7 @@
                         }],
                         "body": {
                             "mode": "raw",
-                            "raw": "{ \n\t\"name\": \"Cersei Lannister\",\n\t\"age\": 32,\n\t\"bag\":[6]\n}",
+                            "raw": "{ \n\t\"name\": \"Cersei Lannister\",\n\t\"age\": 32,\n\t\"bag\":[-1]\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -342,7 +342,7 @@
         {
             "name": "GET",
             "item": [{
-                    "name": "add player success",
+                    "name": "get player success",
                     "event": [{
                         "listen": "test",
                         "script": {
@@ -392,7 +392,7 @@
                     "response": []
                 },
                 {
-                    "name": "add object success",
+                    "name": "get object success",
                     "event": [{
                         "listen": "test",
                         "script": {
@@ -706,6 +706,104 @@
                             ]
                         },
                         "description": "Health cannot be more then 100.\nPass api tests."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update object value success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "db6872b8-a1a7-4538-b7fb-f248cd666479",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t        \"value\": -5\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/objects/1/value",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "objects",
+                                "1",
+                                "value"
+                            ]
+                        },
+                        "description": "Spoon now have a value of -5"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update object value validationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "14ee1d2e-de56-4674-a2d7-690b63d64f13",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t        \"value\": 25\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/objects/3/value",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "objects",
+                                "3",
+                                "value"
+                            ]
+                        },
+                        "description": "Value of object 3 (sword), cannot be update because value does not entry into the specified parameters"
                     },
                     "response": []
                 }

@@ -43,8 +43,8 @@ api.post("/players", function(req, res) {
     else if (req.body.health < 0 || req.body.health > 100)
         return res.status(400).json("Health must be between 0 and 100");
 
-    else if (!req.body.bag || (req.body.bag[0] < 0 || req.body.bag[0] > 5))
-        return res.status(400).json("Bag is required and should be between 1 and 5");
+    else if (!req.body.bag || req.body.bag < 0)
+        return res.status(400).json("Bag is required and cannot be less then 0");
 
 
     // Creat new player
@@ -92,8 +92,8 @@ api.put("/players/:id/bag", function(req, res) {
     if (!player) return res.status(404).json("Player doesn't exist!");
 
     // Validation error 400 bad request
-    else if (!addItem || (addItem < 0 || addItem > 5))
-        return res.status(400).json("Bag is required and should be between 1 and 5");
+    else if (!addItem || addItem < 0)
+        return res.status(400).json("Bag is required and cannot be less then 1");
 
     // Check if object exist
     else if (object.indexOf(addItem) != -1) {
@@ -121,7 +121,7 @@ api.put("/players/:id/health", function(req, res) {
     else if (req.body.health < 0 || req.body.health > 100)
         return res.status(400).json("Health must be between 0 and 100");
 
-    // Update course
+    // Update health
     player.health = req.body.health;
     // Return the updated player
     res.send(player);
@@ -198,9 +198,27 @@ api.get("/objects/:id", function(req, res) {
     }
 });
 
+// UPDATE OBJECT VALUE
+api.put("/objects/:id/value", function(req, res) {
+
+    // Find object with specific ID
+    const object = objects.find(o => o.id === parseInt(req.params.id));
+    // Validation error 400 bad request
+    if (!object) return res.status(404).json("The object with the given ID was not found!");
+
+    // Validation error 400 bad request
+    else if (!req.body.value || (req.body.value < -20 || req.body.value > 20))
+        return res.status(400).json("Object value is required and should be between -20 and +20");
+
+    // Update object
+    object.value = req.body.value;
+    // Return the updated player
+    res.send(object);
+});
+
 // DELETE AN OBJECT
 api.delete("/objects/:id", function(req, res) {
-    //Look if the copurse exist
+    // Find object with specific ID
     const object = objects.find(o => o.id === parseInt(req.params.id));
     // Validation error 404 if object doesnt exist
     if (!object) return res.status(404).json("The object with the given ID was not found!");
