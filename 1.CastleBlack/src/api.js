@@ -20,14 +20,45 @@ const objects = [
 api.get("/players", function(req, res) {
 
     // Get all players
-    var playersName = [];
+    var allPlayers = [];
     for (p = 0; p < players.length; p++) {
         if (players[p]) {
-            playersName.push(players[p].name);
+            allPlayers.push(players[p]);
         }
     }
     // Display result
-    res.json(playersName);
+    res.json(allPlayers);
+});
+
+// CREATE A PLAYER
+api.post("/players", function(req, res) {
+
+    // Validation error 400 bad request
+    if (!req.body.name || req.body.name.length < 3)
+        return res.status(400).json("Name is required and should be minimum 3 characters");
+
+    else if (!req.body.age || (req.body.age < 18 || req.body.age > 60))
+        return res.status(400).json("Age is required and should be between 18 and 60");
+
+    else if (req.body.health < 0 || req.body.health > 100)
+        return res.status(400).json("Health must be between 0 and 100");
+
+    else if (!req.body.bag || (req.body.bag[0] < 0 || req.body.bag[0] > 5))
+        return res.status(400).json("Bag is required and should be between 1 and 5");
+
+
+    // Creat new player
+    const player = {
+        id: players.length + 1,
+        name: req.body.name,
+        age: req.body.age,
+        health: req.body.health,
+        bag: req.body.bag
+    };
+    // Push new player to players array  
+    // display result in postman collection attached in the utils folder
+    players.push(player);
+    res.json(player);
 });
 
 // GET SPECIFIC PLAYER BY ID
@@ -43,35 +74,60 @@ api.get("/players/:id", function(req, res) {
     res.json(player);
 });
 
-// ADD A PLAYER
-api.post("/players", function(req, res) {
+// UPDATE PLAYER BAG
+api.put("/players/:id/bag", function(req, res) {
+
+    const player = players.find(p => p.id === parseInt(req.params.id)); // Find the player with the specific ID
+    var object = []; // Get all object that can be added to the bag
+    var addItem = req.body.bag; // New item
+
+    // Check for all available objects
+    for (o = 0; o < objects.length; o++) {
+        if (objects[o]) {
+            object.push(objects[o].name);
+        }
+    }
 
     // Validation error 400 bad request
-    if (!req.body.name || req.body.name.length < 3)
-        return res.status(400).json("Name is required and should be minimum 3 characters");
+    if (!player) return res.status(404).json("Player doesn't exist!");
 
-    else if (!req.body.age || (req.body.age < 18 || req.body.age > 60))
-        return res.status(400).json("Age is required and should be between 18 and 60");
-
-    else if (!req.body.bag || (req.body.bag[0] < 0 || req.body.bag[0] > 5))
+    // Validation error 400 bad request
+    else if (!addItem || (addItem < 0 || addItem > 5))
         return res.status(400).json("Bag is required and should be between 1 and 5");
 
+    // Check if object exist
+    else if (object.indexOf(addItem) != -1) {
+        object.push(addItem)
+    } else {
+        return res.status(400).json("Object does not exist");
+    }
 
-    // Creat new player
-    const player = {
-        id: players.length + 1,
-        name: req.body.name,
-        age: req.body.age,
-        health: 100,
-        bag: req.body.bag
-    };
-    // Push new player to players array  
-    // display result in postman collection attached in the utils folder
-    players.push(player);
-    res.json(player);
+    // Add object to player bag
+    player["bag"].push(addItem);
+    // Return the updated player
+    res.send(player);
+
 });
 
-// DELETE A PLAYER
+// UPDATE PLAYER HEALTH (Use PUT request so player is not completely destroyed, and can be resurrected)
+api.put("/players/:id/health", function(req, res) {
+
+    // Find the player with the specific ID
+    const player = players.find(p => p.id === parseInt(req.params.id));
+    // Validation error 400 bad request
+    if (!player) return res.status(404).json("The player with the given ID was not found!");
+
+    // Validation error 400 bad request
+    else if (req.body.health < 0 || req.body.health > 100)
+        return res.status(400).json("Health must be between 0 and 100");
+
+    // Update course
+    player.health = req.body.health;
+    // Return the updated player
+    res.send(player);
+});
+
+// DELETE A PLAYER (If choose to completely destroy player from the game)
 api.delete("/players/:id", function(req, res) {
     //Look if the copurse exist
     const player = players.find(p => p.id === parseInt(req.params.id));
@@ -102,21 +158,6 @@ api.get("/objects", function(req, res) {
     res.json(objectInfo);
 });
 
-// GET SPECIFIC OBJECT BY ID
-api.get("/objects/:id", function(req, res) {
-
-    // Find the object with the specific ID
-    const object = objects.find(o => o.id === parseInt(req.params.id));
-
-    // Validation error 400 bad request
-    if (!object) {
-        res.status(404).json("The object with the given ID was not found!");
-    } else {
-        // Display result
-        res.json(object);
-    }
-});
-
 // ADD AN OBJECT
 api.post("/objects", function(req, res) {
 
@@ -140,6 +181,21 @@ api.post("/objects", function(req, res) {
     // display result in postman collection attached in the utils folder
     objects.push(object);
     res.json(object);
+});
+
+// GET SPECIFIC OBJECT BY ID
+api.get("/objects/:id", function(req, res) {
+
+    // Find the object with the specific ID
+    const object = objects.find(o => o.id === parseInt(req.params.id));
+
+    // Validation error 400 bad request
+    if (!object) {
+        res.status(404).json("The object with the given ID was not found!");
+    } else {
+        // Display result
+        res.json(object);
+    }
 });
 
 // DELETE AN OBJECT

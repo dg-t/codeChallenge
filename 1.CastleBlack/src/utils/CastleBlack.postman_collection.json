@@ -8,6 +8,18 @@
             "name": "POST",
             "item": [{
                     "name": "add player success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "1aa69309-f5a0-4082-9aa0-9cc712e716ba",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -42,6 +54,18 @@
                 },
                 {
                     "name": "add player ageValidationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "019917ac-1bb6-41c7-aa81-cd83b2a9bcb7",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -77,6 +101,18 @@
                 },
                 {
                     "name": "add player bagValidationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "e613a151-0cdc-4889-95d0-60d80d69d110",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -112,6 +148,18 @@
                 },
                 {
                     "name": "add player nameValidationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "d3ca393f-3a55-4406-871e-50c356163523",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -147,6 +195,21 @@
                 },
                 {
                     "name": "add object success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "a8fe5a5a-f31e-4171-8132-a1427886438c",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});",
+                                "pm.test(\"Stone\", function () {",
+                                "    pm.expect(pm.response.text()).to.include(\"Stone\");",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -181,6 +244,18 @@
                 },
                 {
                     "name": "add object valueValidationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "0155bc37-872d-4637-b05e-ef348f778222",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -216,6 +291,18 @@
                 },
                 {
                     "name": "add object nameValidationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "20687f89-361c-416d-ab34-5caaf6205834",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "POST",
                         "header": [{
@@ -256,6 +343,18 @@
             "name": "GET",
             "item": [{
                     "name": "add player success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "9929e4a4-8356-46c5-adb1-b563bed7a374",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "protocolProfileBehavior": {
                         "disableBodyPruning": true
                     },
@@ -294,6 +393,18 @@
                 },
                 {
                     "name": "add object success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "56af6443-6759-4ace-a637-25b5f37f2249",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "GET",
                         "header": [],
@@ -320,6 +431,18 @@
             "name": "DELETE",
             "item": [{
                     "name": "delete object validationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "58a4951a-b2f9-4ab0-b804-96a3acf15875",
+                            "exec": [
+                                "pm.test(\"Status code is 404\", function () {",
+                                "    pm.response.to.have.status(404);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "DELETE",
                         "header": [],
@@ -341,6 +464,18 @@
                 },
                 {
                     "name": "delete object success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "a547b167-7677-4d03-bc18-5ec1e5144a4f",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
                     "request": {
                         "method": "DELETE",
                         "header": [],
@@ -358,6 +493,219 @@
                             ]
                         },
                         "description": "Delete object with id of 2"
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "PUT",
+            "item": [{
+                    "name": "update bag success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "3bb19e2f-4c8f-470b-a98c-205ac40fa5ec",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});",
+                                "pm.test(\"sword\", function () {",
+                                "    pm.expect(pm.response.text()).to.include(\"sword\");",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": " {\n        \"bag\": \"sword\"\n    }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api//players/1/bag",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "",
+                                "players",
+                                "1",
+                                "bag"
+                            ]
+                        },
+                        "description": "A sword has been added to the bag of player one"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update bag validationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "6ccc6abf-2043-40a0-8d56-6c8d72b641f3",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});",
+                                "pm.test(\"Object does not exist\", function () {",
+                                "    pm.expect(pm.response.text()).to.include(\"Object does not exist\");",
+                                "});"
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": " {\n        \"bag\": \"gun\"\n    }",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api//players/1/bag",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "",
+                                "players",
+                                "1",
+                                "bag"
+                            ]
+                        },
+                        "description": "Pass 2 api tests"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update health to success",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "653fac0d-3024-45bb-b304-320dfe5491a6",
+                            "exec": [
+                                "pm.test(\"Status code is 200\", function () {",
+                                "    pm.response.to.have.status(200);",
+                                "});",
+                                ""
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t        \"health\": 0\n\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api//players/2/health",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "",
+                                "players",
+                                "2",
+                                "health"
+                            ]
+                        },
+                        "description": "Kill player by setting health to 0.\nWe use update so that player can be resurrected."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "update health validationError",
+                    "event": [{
+                        "listen": "test",
+                        "script": {
+                            "id": "653fac0d-3024-45bb-b304-320dfe5491a6",
+                            "exec": [
+                                "pm.test(\"Status code is 400\", function () {",
+                                "    pm.response.to.have.status(400);",
+                                "});",
+                                ""
+                            ],
+                            "type": "text/javascript"
+                        }
+                    }],
+                    "request": {
+                        "method": "PUT",
+                        "header": [{
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "type": "text"
+                        }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t        \"health\": 101\n\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api//players/2/health",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "",
+                                "players",
+                                "2",
+                                "health"
+                            ]
+                        },
+                        "description": "Health cannot be more then 100.\nPass api tests."
                     },
                     "response": []
                 }

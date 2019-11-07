@@ -4,7 +4,7 @@
 
 The Payvision' Calculator is a simple tool to make simple math calculations. 
 It will work in a few simple steps: 
-1. Press any button with the digits on it, the numbers will appear on the display.
+1. Press any button with the digits on it, the numbers will appear on the display. (This calculator cannot start with negative numbers).
 2. Press ONE button with the operation of your choice. (If you press an operation twice it will break the calculator).
 3. Repeat step one, with the number you wish to get the calculation with. 
 4. Then press "=" to display the result.
@@ -37,7 +37,7 @@ The Payvision' Calculator can display up to 9 digits, and it will support up to 
 2. Add Html tag with lang attribute  
 and head tag with child element title is required
 3. ID btn for button numbers has always same value
-4. Html, css and js in separete files
+4. Html, css and js in separate files
 5. Place calculator heading inside a container
 ---
 
@@ -70,18 +70,15 @@ Implement multiplication and division to the Payvision' Calculator.
 
 ### 4. Test automation
 
-I would use Selenium as tool to automate the calculator tests on websites and web application.
-
-Selenium is a CrossBrowserTesting tool, that can be used with JavaScript to run and automated browser tests on many real mobile and desktop browsers.
-
+I would create unit tests and integrations tests.
 
 ---
 
-For this exercise I used the Console DevTools in Chrome to check for any bug.
+For this exercise I used the Console DevTools in Chrome to debug.
 
 I found that while performing multiple operations, the division operation was not performing as expected. 
 
-Thanks to the devTools, I realize that on line 122 of my js file I had var `oldNum = 0`, so when i was performing a division operation after any other operation, it would start with a "0 / anyNumber", resulting always in 0.
+Thanks to the DevTools, I realize that on line 122 of my js file I had var `oldNum = 0`, so when i was performing a division operation after any other operation, it would start with a "0 / anyNumber", resulting always in 0.
 
 I fix this bug changing line 122 in the js file to `oldNum = ""` and now the calculator works greatly. 
 
