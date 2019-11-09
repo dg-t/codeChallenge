@@ -12,7 +12,10 @@ app.set("port", port);
 
 async function run() {
 
-    app.disable("x-powered-by"); // QUESTION: any reason is this line here?
+    app.disable("x-powered-by");
+    // QUESTION: any reason is this line here?
+    // For security reason: x-powered-by show publicly which software an app is running
+    // Disabling x-powered-by can prevent attackers know that an app is running express
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 

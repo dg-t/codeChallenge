@@ -5,26 +5,37 @@ This is a Game of Thrones inspired REST API game. You are responsible to create 
 ## Your tasks
 
 1. Implement the endpoints in **./src/api.js** file with the most suitable code for players and objects management REST API. You will find detailed instructions in this file.
-2. Write some tests for your code. Use test folder for this purpose.
-3. Answer all commented questions you find in the code.
+2. Write some tests for your code. Use test folder for this purpose. -- All enpoints are tested with postman api testing
+3. Answer all commented questions you find in the code. -- Question as answered as comments in Code and below:
+
+    - #### QUESTION: any reason is this line here? 
+        - For security reason: x-powered-by show publicly which software an app is running
+        - Disabling x-powered-by can prevent attackers know that an app is running express
+
+    - #### QUESTION: why this endpoint blocks the app?
+        - Is a route at the root path of this Router that sends back a message "Up and running"
+        - Is the container for the middleware on this router
+        - The middleware and routes attached to this Router will be running as long as we are accessing a route that starts at the root path, imported in app.use("/", router)
 
 ### Required endpoints
 
 You have to create endpoints (as many as you consider) to support the following functionality:
 
-1. List all players.
-2. Create player: adds a new player to data source.
-3. Get player by id: returns the player for the given id.
-4. Arm a player with an object in its bag.
-5. Kill a player: sets player health to 0.
-6. Create object: adds a new object to data source.
-7. Get object by id: returns the object for the given id.
-8. Upgrade object: increase/descrease the value of the object given by id with a new value
-9. Destroy object: remove an object from available objects
+#### All endpoint are easily accessible from the Postman Collection ####
+1. List all players. -- 
+(Method: GET - Postman Collection) - Type on localhost: http://localhost:8080/api/players
+2. Create player: adds a new player to data source. -- (Method: POST - Postman Collection)
+3. Get player by id: returns the player for the given id. -- (Method: GET - Postman Collection) Type on localhost: http://localhost:8080/api/players/:id
+4. Arm a player with an object in its bag. -- (Method: PUT - Postman Collection)
+5. Kill a player: sets player health to 0. -- (Method: PUT - Postman Collection)/ Could be made with method: DELETE if we wish to completely destroy player from the game.
+6. Create object: adds a new object to data source. -- (Method: POST - Postman Collection)
+7. Get object by id: returns the object for the given id. (Method: GET - Postman Collection) Type on localhost: http://localhost:8080/api/objects/:id
+8. Upgrade object: increase/descrease the value of the object given by id with a new value (Method: PUT - Postman Collection)
+9. Destroy object: remove an object from available objects -- (Method: DELETE - Postman Collection)
 
 **Bonus:**
 
-1. Include a postman collection in utils folder to test the app.
+1. Include a postman collection in utils folder to test the app. -- Postman Collection included
 2. Add basic authentication to /api path.
 3. Implement pick up item endpoint: one player add to its bag one item that doesn't belong to any other player.
 4. Implement attack player endpoint: one player attacks another player using an object from its bag. Adjust health accordingly
