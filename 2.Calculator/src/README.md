@@ -70,7 +70,9 @@ Implement multiplication and division to the Payvision' Calculator.
 
 ### 4. Test automation
 
-I would create unit tests and integrations tests.
+I would create unit tests and integrations tests. 
+Jest is probably the best solution, as it is simple to get up and running, and is easy the basics are easy to understand.
+Furthermore, jest is a very popular library for both running and assorting.
 
 ---
 
