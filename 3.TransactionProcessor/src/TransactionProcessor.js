@@ -43,13 +43,18 @@ class TransactionProcessor {
     // BONUS:
     // Apply multiple filters. Filters parameter should be an array of functions (predicates)
     filterTransaction(filters) {
-        // ...
+        this.transactions = this.transactions.filter(transaction => (transaction.amount < 10)).filter(transaction => (transaction.brand === "visa")).filter(transaction => (transaction.currency === "EUR"));
         return this;
     }
 
     // Return the total amount of current transactions array
     sum() {
-        return 0;
+
+        var sumAmount = this.transactions
+            .filter(transaction => (transaction.id > 0) || (transaction.amount >= 0) || (transaction.currency === "EUR" || transaction.currency === "USD" || transaction.currency === "GBP") || (transaction.brand === "visa" || transaction.brand === "mastercard" || transaction.brand === "amex"))
+            .map(transaction => transaction.amount)
+            .reduce((a, b) => a + b, 0)
+        return parseFloat(sumAmount.toFixed(2));
     }
 }
 
